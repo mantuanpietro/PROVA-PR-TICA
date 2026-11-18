@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Aulas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Aulas agendadas</h1>
+                <p class="subtitle">Consulte os horários e dados dos alunos.</p>
+            </div>
+            <a class="link-button" href="/home">Voltar ao início</a>
+        </header>
+        <section class="panel">
+            {% if aulas %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data e hora</th><th>Aluno</th><th>Instrumento</th>
+                            <th>Responsável</th><th>CPF</th><th>Telefone</th><th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in aulas %}
+                        <tr>
+                            <td>{{ a.data_hora.strftime('%d/%m/%Y às %H:%M') }}</td>
+                            <td>{{ a.aluno }}</td>
+                            <td>{{ a.instrumento }}</td>
+                            <td>{{ a.responsavel }}</td>
+                            <td>{{ a.cpf }}</td>
+                            <td>{{ a.telefone or '—' }}</td>
+                            <td><a class="button button-secondary button-small" href="/aulas/editar/{{ a.id_aula }}">Alterar data</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">Ainda não há aulas agendadas.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Olá, {{ session.nome }}</h1>
+                <p class="subtitle">O que você deseja fazer hoje?</p>
+            </div>
+            <a class="link-button" href="/logout">Sair</a>
+        </header>
+        <section class="home-grid" aria-label="Acesso rápido">
+            <a class="home-card" href="/responsaveis">
+                <strong>Responsáveis</strong>
+                <span>Consulte, cadastre ou edite responsáveis.</span>
+            </a>
+            <a class="home-card" href="/aluno/novo">
+                <strong>Cadastrar aluno</strong>
+                <span>Adicione um aluno e associe um responsável.</span>
+            </a>
+            <a class="home-card" href="/aulas">
+                <strong>Aulas agendadas</strong>
+                <span>Consulte as aulas e altere datas.</span>
+            </a>
+        </section>
+    </main>
+</body>
+</html>

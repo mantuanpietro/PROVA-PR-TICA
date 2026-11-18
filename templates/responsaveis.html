@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsável</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Responsáveis</h1>
+                <p class="subtitle">Gerencie os dados dos responsáveis cadastrados.</p>
+            </div>
+            <a class="link-button" href="/home">Voltar ao início</a>
+        </header>
+        <section class="panel">
+            <div class="toolbar">
+                <form method="GET" class="search-form">
+                    <input type="search" name="termo" value="{{ termo }}" placeholder="Buscar pelo nome" aria-label="Buscar responsável pelo nome">
+                    <button type="submit">Buscar</button>
+                </form>
+                <a class="button" href="/responsaveis/novo">Cadastrar responsável</a>
+            </div>
+            {% if responsaveis %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th><th>CPF</th><th>Telefone</th><th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in responsaveis %}
+                        <tr>
+                            <td>{{ r.nome }}</td>
+                            <td>{{ r.cpf }}</td>
+                            <td>{{ r.telefone or '—' }}</td>
+                            <td>
+                                <div class="actions">
+                                    <a class="button button-secondary button-small" href="/responsaveis/editar/{{ r.id_responsavel }}">Editar</a>
+                                    <form method="post" action="/responsaveis/excluir/{{ r.id_responsavel }}" onsubmit="return confirm('Excluir este responsável, seus alunos e as aulas relacionadas?');">
+                                        <button class="button-danger button-small" type="submit">Excluir</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="empty-state">Nenhum responsável encontrado. Você pode cadastrar um novo responsável.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar responsaveis</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Editar responsável</h1>
+                <p class="subtitle">Atualize os dados cadastrais.</p>
+            </div>
+            <a class="link-button" href="/responsaveis">Voltar aos responsáveis</a>
+        </header>
+        <section class="panel">
+            <form method="post" class="form-stack">
+                <label class="field">Nome
+                    <input type="text" name="nome" maxlength="100" value="{{ responsavel.nome }}" required>
+                </label>
+                <label class="field">CPF
+                    <input type="text" name="cpf" inputmode="numeric" value="{{ responsavel.cpf }}" required>
+                </label>
+                <label class="field">Telefone
+                    <input type="tel" name="telefone" maxlength="20" value="{{ responsavel.telefone or '' }}">
+                </label>
+                <div class="actions">
+                    <button type="submit">Salvar alterações</button>
+                    <a class="button button-secondary" href="/responsaveis">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

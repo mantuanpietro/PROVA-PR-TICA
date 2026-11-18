@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar aluno</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Cadastrar aluno</h1>
+                <p class="subtitle">Cadastre o aluno e selecione seu responsável.</p>
+            </div>
+            <a class="link-button" href="/home">Voltar ao início</a>
+        </header>
+        <section class="panel">
+            {% if mensagem %}
+                <p class="alert" role="status">{{ mensagem }}</p>
+            {% endif %}
+            {% if responsaveis %}
+            <form method="post" class="form-stack">
+                <label class="field">Nome do aluno
+                    <input type="text" name="nome" maxlength="100" required>
+                </label>
+                <label class="field">Instrumento
+                    <input type="text" name="instrumento" maxlength="50" required>
+                </label>
+                <label class="field">Responsável
+                    <select name="id_responsavel" required>
+                        {% for r in responsaveis %}
+                        <option value="{{ r.id_responsavel }}">{{ r.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
+                <button type="submit">Cadastrar aluno</button>
+            </form>
+            {% else %}
+            <p class="empty-state">Cadastre um responsável antes de adicionar um aluno.</p>
+            <a class="button" href="/responsaveis/novo">Cadastrar responsável</a>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

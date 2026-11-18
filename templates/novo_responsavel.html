@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo responsável</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Cadastrar responsável</h1>
+                <p class="subtitle">Preencha as informações abaixo.</p>
+            </div>
+            <a class="link-button" href="/responsaveis">Voltar aos responsáveis</a>
+        </header>
+        <section class="panel">
+            <form method="post" class="form-stack">
+                <label class="field">Nome
+                    <input type="text" name="nome" maxlength="100" required>
+                </label>
+                <label class="field">CPF
+                    <input type="text" name="cpf" inputmode="numeric" required>
+                </label>
+                <label class="field">Telefone
+                    <input type="tel" name="telefone" maxlength="20">
+                </label>
+                <div class="actions">
+                    <button type="submit">Cadastrar responsável</button>
+                    <a class="button button-secondary" href="/responsaveis">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

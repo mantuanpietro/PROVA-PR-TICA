@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Data</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <h1>Alterar data da aula</h1>
+                <p class="subtitle">Escolha a nova data e horário.</p>
+            </div>
+            <a class="link-button" href="/aulas">Voltar às aulas</a>
+        </header>
+        <section class="panel">
+            <form method="post" class="form-stack">
+                <label class="field">Data e hora
+                    <input type="datetime-local" name="data_hora" value="{{ aula.data_hora.strftime('%Y-%m-%dT%H:%M') }}" required>
+                </label>
+                <div class="actions">
+                    <button type="submit">Salvar alterações</button>
+                    <a class="button button-secondary" href="/aulas">Cancelar</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

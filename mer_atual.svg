@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">MER atual — sistema da escola de música</title>
+  <desc id="description">Diagrama das tabelas usuario, responsavel, aluno e aula, com chaves, cardinalidades e exclusão em cascata.</desc>
+  <defs>
+    <style>
+      text { font-family: "Segoe UI", Arial, sans-serif; fill: #24332f; }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #687873; }
+      .entity { fill: #ffffff; stroke: #cbd9d2; stroke-width: 2; }
+      .entity-head { fill: #e8f3ed; }
+      .independent-head { fill: #edf0fb; }
+      .entity-name { font-size: 19px; font-weight: 700; letter-spacing: 1px; }
+      .field { font-size: 16px; }
+      .key { font-size: 11px; font-weight: 700; fill: #ffffff; }
+      .key-pk { fill: #26745c; }
+      .key-fk { fill: #5366a4; }
+      .key-unique { fill: #8a641c; }
+      .relation { stroke: #52665d; stroke-width: 2.5; fill: none; }
+      .multiplicity { font-size: 15px; font-weight: 700; fill: #344840; }
+      .relation-label { font-size: 14px; font-weight: 600; fill: #4a5d54; }
+      .note-title { font-size: 15px; font-weight: 700; }
+      .note { font-size: 14px; fill: #52645c; }
+      .small { font-size: 13px; fill: #687873; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f3f7f5"/>
+  <text class="title" x="80" y="66">Modelo Entidade-Relacionamento</text>
+  <text class="subtitle" x="80" y="94">Sistema atual da escola de música · esquema relacional MySQL</text>
+
+  <!-- Relacionamentos: um responsável/aluno pode ter nenhum ou vários registros dependentes. -->
+  <path class="relation" d="M 390 535 H 650"/>
+  <path class="relation" d="M 950 535 H 1210"/>
+  <text class="multiplicity" x="407" y="515">1</text>
+  <text class="multiplicity" x="602" y="515">0..N</text>
+  <rect x="453" y="511" width="134" height="27" rx="13" fill="#f3f7f5"/>
+  <text class="relation-label" x="520" y="530" text-anchor="middle">possui</text>
+  <text class="multiplicity" x="967" y="515">1</text>
+  <text class="multiplicity" x="1160" y="515">0..N</text>
+  <rect x="1026" y="511" width="132" height="27" rx="13" fill="#f3f7f5"/>
+  <text class="relation-label" x="1092" y="530" text-anchor="middle">agenda</text>
+
+  <!-- Usuário não possui chave estrangeira para as entidades acadêmicas. -->
+  <g>
+    <rect class="entity" x="620" y="130" width="360" height="230" rx="12"/>
+    <path class="independent-head" d="M 632 130 H 968 Q 980 130 980 142 V 184 H 620 V 142 Q 620 130 632 130 Z"/>
+    <text class="entity-name" x="800" y="165" text-anchor="middle">USUARIO</text>
+    <line x1="620" y1="184" x2="980" y2="184" stroke="#dce5e1"/>
+    <rect class="key-pk" x="642" y="201" width="34" height="22" rx="5"/>
+    <text class="key" x="659" y="216" text-anchor="middle">PK</text>
+    <text class="field" x="690" y="218">id_usuario INT</text>
+    <text class="field" x="642" y="251">nome VARCHAR(100)</text>
+    <rect class="key-unique" x="642" y="265" width="64" height="22" rx="5"/>
+    <text class="key" x="674" y="280" text-anchor="middle">UNIQUE</text>
+    <text class="field" x="716" y="282">email VARCHAR(255)</text>
+    <text class="field" x="642" y="316">senha VARCHAR(255) — hash</text>
+  </g>
+  <text class="small" x="800" y="390" text-anchor="middle">Autenticação do sistema · sem relacionamento (FK) com as demais tabelas</text>
+
+  <!-- RESPONSAVEL -->
+  <g>
+    <rect class="entity" x="90" y="425" width="300" height="280" rx="12"/>
+    <path class="entity-head" d="M 102 425 H 378 Q 390 425 390 437 V 479 H 90 V 437 Q 90 425 102 425 Z"/>
+    <text class="entity-name" x="240" y="460" text-anchor="middle">RESPONSAVEL</text>
+    <line x1="90" y1="479" x2="390" y2="479" stroke="#dce5e1"/>
+    <rect class="key-pk" x="112" y="498" width="34" height="22" rx="5"/>
+    <text class="key" x="129" y="513" text-anchor="middle">PK</text>
+    <text class="field" x="158" y="515">id_responsavel INT</text>
+    <text class="field" x="112" y="550">nome VARCHAR(100)</text>
+    <text class="field" x="112" y="585">cpf VARBINARY(64)</text>
+    <text class="small" x="130" y="605">armazenado criptografado</text>
+    <text class="field" x="112" y="640">telefone VARCHAR(20)</text>
+  </g>
+
+  <!-- ALUNO -->
+  <g>
+    <rect class="entity" x="650" y="425" width="300" height="280" rx="12"/>
+    <path class="entity-head" d="M 662 425 H 938 Q 950 425 950 437 V 479 H 650 V 437 Q 650 425 662 425 Z"/>
+    <text class="entity-name" x="800" y="460" text-anchor="middle">ALUNO</text>
+    <line x1="650" y1="479" x2="950" y2="479" stroke="#dce5e1"/>
+    <rect class="key-pk" x="672" y="498" width="34" height="22" rx="5"/>
+    <text class="key" x="689" y="513" text-anchor="middle">PK</text>
+    <text class="field" x="718" y="515">id_aluno INT</text>
+    <text class="field" x="672" y="550">nome VARCHAR(100)</text>
+    <text class="field" x="672" y="585">instrumento VARCHAR(50)</text>
+    <rect class="key-fk" x="672" y="604" width="34" height="22" rx="5"/>
+    <text class="key" x="689" y="619" text-anchor="middle">FK</text>
+    <text class="field" x="718" y="621">id_responsavel INT</text>
+  </g>
+
+  <!-- AULA -->
+  <g>
+    <rect class="entity" x="1210" y="425" width="300" height="280" rx="12"/>
+    <path class="entity-head" d="M 1222 425 H 1498 Q 1510 425 1510 437 V 479 H 1210 V 437 Q 1210 425 1222 425 Z"/>
+    <text class="entity-name" x="1360" y="460" text-anchor="middle">AULA</text>
+    <line x1="1210" y1="479" x2="1510" y2="479" stroke="#dce5e1"/>
+    <rect class="key-pk" x="1232" y="498" width="34" height="22" rx="5"/>
+    <text class="key" x="1249" y="513" text-anchor="middle">PK</text>
+    <text class="field" x="1278" y="515">id_aula INT</text>
+    <text class="field" x="1232" y="550">data_hora DATETIME</text>
+    <rect class="key-fk" x="1232" y="569" width="34" height="22" rx="5"/>
+    <text class="key" x="1249" y="584" text-anchor="middle">FK</text>
+    <text class="field" x="1278" y="586">id_aluno INT</text>
+  </g>
+
+  <rect x="90" y="755" width="1420" height="92" rx="12" fill="#eaf3ee" stroke="#cbd9d2"/>
+  <text class="note-title" x="118" y="787">Regras de exclusão</text>
+  <text class="note" x="118" y="815">RESPONSAVEL → ALUNO: ON DELETE CASCADE</text>
+  <text class="note" x="710" y="815">ALUNO → AULA: ON DELETE CASCADE</text>
+  <text class="small" x="118" y="837">Excluir um responsável remove seus alunos e, em cascata, as aulas desses alunos.</text>
+</svg>
